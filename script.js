@@ -34,10 +34,13 @@ window.addEventListener("load", function(){
         let fuelLevel = document.querySelector("input[name=fuelLevel]");
         let cargoMass= document.querySelector("input[name=cargoMass]");
         if (pilotName.value === "" || coPilotName.value === "" || fuelLevel.value === "" || cargoMass.value === ""){
-            alert("All fields are required!");
-        }
-
+            alert("All fields are required!")
+        } 
+       else {formSubmission(document, "list", pilotName, coPilotName, fuelLevel, cargoMass);        
+        };
     });
+    
 });
 
-//need to add an alert for instances where a number is passed to pilot/copilot name or string to fuel level/cargo mass
+
+

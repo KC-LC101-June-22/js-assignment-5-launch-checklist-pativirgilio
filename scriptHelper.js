@@ -33,27 +33,30 @@ function validateInput(testInput) {
     
 } 
 
+
+
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   let pilotStatus = document.getElementByID("pilotStatus");
+   let pilotStatus = document.getElementById("pilotStatus");
    let copilotStatus = document.getElementById("copilotStatus");
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
    let launchStatus = document.getElementById("launchStatus");
 
-   pilotStatus.innerHTML = `Pilot ${pilotName.value} is Ready`
-   copilotStatus.innerHTML = `Co-pilot ${copilotName.value} is Ready`
+   pilotStatus.innerHTML = `Pilot ${pilot.value} is Ready`
+   copilotStatus.innerHTML = `Co-pilot ${copilot.value} is Ready`
 
-   if(fuelLevel.value < 10000){
+   if(fuelLevel.value < 10000 || fuelLevel.value ==""){
     faultyItems.style.visibility = "visible";
     fuelStatus.innerHTML = "There is not enough fuel for the journey!";
     launchStatus.innerHTML = "Shuttle not ready for launch" ;
     launchStatus.style.color = "red";
-   } else if (cargoMass > 10000){
+   } else if (cargoLevel.value > 10000 ){
     faultyItems.style.visibility = "visible";
     cargoStatus.innerHTML = "There is too much mass for the shuttle to take off!";
     launchStatus.innerHTML = "Shuttle not ready for launch" ;
     launchStatus.style.color = "red";
-   } else {
+   } 
+      else {
     launchStatus.innerHTML = "Shuttle is ready for launch" ;
     launchStatus.style.color = "green";
    }
