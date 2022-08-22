@@ -25,7 +25,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 function validateInput(testInput) {
    if (testInput === "") {
     return "Empty"
-   } else if  (Number.isNaN(testInput)) { //try using just isNaN
+   } else if  (isNaN(testInput)) { 
     return "Not a Number"
    } else {
     return "Is a Number"
@@ -33,32 +33,39 @@ function validateInput(testInput) {
     
 } 
 
-
-
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
    let pilotStatus = document.getElementById("pilotStatus");
    let copilotStatus = document.getElementById("copilotStatus");
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
    let launchStatus = document.getElementById("launchStatus");
 
-   pilotStatus.innerHTML = `Pilot ${pilot.value} is Ready`
-   copilotStatus.innerHTML = `Co-pilot ${copilot.value} is Ready`
 
-   if(fuelLevel.value < 10000 || fuelLevel.value ==""){
+    if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number") {
+        alert ("Name fields should contain alpha only. Please review your input and resubmit the form.") 
+    } else if (validateInput(fuelLevel.value) === "Not a Number" || validateInput(cargoLevel.value) === "Not a Number") {
+        alert ("Fuel and/or Cargo fields accept numbers only. Please review your input and resubmit the form.") 
+    } else if(fuelLevel.value < 10000){
     faultyItems.style.visibility = "visible";
-    fuelStatus.innerHTML = "There is not enough fuel for the journey!";
+    pilotStatus.innerHTML = `Pilot ${pilot.value} is Ready`;
+    copilotStatus.innerHTML = `Co-pilot ${copilot.value} is Ready`;
+    fuelStatus.innerHTML = "ATTENTION: There is not enough fuel for the journey!";
     launchStatus.innerHTML = "Shuttle not ready for launch" ;
     launchStatus.style.color = "red";
-   } else if (cargoLevel.value > 10000 ){
+   } else if(cargoLevel.value > 10000){
     faultyItems.style.visibility = "visible";
-    cargoStatus.innerHTML = "There is too much mass for the shuttle to take off!";
+    pilotStatus.innerHTML = `Pilot ${pilot.value} is Ready`;
+    copilotStatus.innerHTML = `Co-pilot ${copilot.value} is Ready`;
+    cargoStatus.innerHTML = "ATTENTION: There is too much mass for the shuttle to take off!";
     launchStatus.innerHTML = "Shuttle not ready for launch" ;
     launchStatus.style.color = "red";
-   } 
-      else {
+   }  else {
+    faultyItems.style.visibility = "visible"; //needed this here so each status shows when shuttle is ready for launch. 
     launchStatus.innerHTML = "Shuttle is ready for launch" ;
     launchStatus.style.color = "green";
+    pilotStatus.innerHTML = `Pilot ${pilot.value} is Ready`;
+    copilotStatus.innerHTML = `Co-pilot ${copilot.value} is Ready`;
+  
    }
 
 }
