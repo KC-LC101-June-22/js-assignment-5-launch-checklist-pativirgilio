@@ -1,8 +1,7 @@
-// Write your helper functions here!
 require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   // Here is the HTML formatting for our mission target div.
+   
    let missionTarget = document.getElementById("missionTarget");
    missionTarget.innerHTML =
    `
@@ -17,10 +16,6 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 <img src=${imageUrl}>
    `
 }
-//validateInput() should take in a string as a parameter and return "Empty", "Not a Number", or "Is a Number" as appropriate. 
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN
-//https://www.geeksforgeeks.org/number-validation-in-javascript/ (Number Validation in JS)
-//https://www.w3schools.com/jsref/prop_style_color.asp
 
 function validateInput(testInput) {
    if (testInput === "") {
@@ -60,7 +55,7 @@ function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
     launchStatus.innerHTML = "Shuttle not ready for launch" ;
     launchStatus.style.color = "red";
    }  else {
-    faultyItems.style.visibility = "visible"; //needed this here so each status shows when shuttle is ready for launch. 
+    faultyItems.style.visibility = "visible"; 
     launchStatus.innerHTML = "Shuttle is ready for launch" ;
     launchStatus.style.color = "green";
     pilotStatus.innerHTML = `Pilot ${pilot.value} is Ready`;
